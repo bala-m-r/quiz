@@ -1,0 +1,62 @@
+<div class="question-container">
+    <h2>Questions</h2>
+    <form (ngSubmit)="submitQuiz()">
+      <ul>
+        <li *ngFor="let question of questions; let i = index">
+          <div class="question-content">
+            <span>{{i + 1}}. {{question.question}}</span>
+          </div>
+  
+          <ul>
+            <li *ngFor="let option of question.options">
+              
+              <p-radioButton 
+                name="option{{i}}" 
+                [(ngModel)]="selectedAnswers[i]" 
+                [value]="option"
+                inputId="option{{i}}{{option.id}}"
+                >
+              </p-radioButton>
+              <label for="option{{i}}{{option.id}}">{{ option.answer }}</label>
+            </li>
+          </ul>
+        </li>
+      </ul>
+  
+      <div class="submit-button">
+        <button pButton type="submit" label="Submit Quiz" icon="pi pi-check"></button>
+      </div>
+    </form>
+  
+    <div *ngIf="quizSubmitted">
+      <h3>Your Score: {{score}}/{{questions.length}}</h3>
+    </div>
+    <div class="submit-button" *ngIf="quizSubmitted">
+      <button pButton (click)="gotoSubject(studentId)" label="Go To Subjects" icon="pi pi-arrow-left"></button>
+    </div>
+
+  </div>
+  
+
+
+
+
+<!-- <div class="question-container">
+    <h2>Questions</h2>
+    <div class="header-buttons">
+            <p-button label="Back to Subjects" icon="pi pi-arrow-left" (click)="gotoSubject()" styleClass="p-button-info right-button"></p-button>
+    </div>
+    <ul>
+      <li *ngFor="let question of questions; let i = index">
+        <div class="question-content">
+          <span>{{i + 1 }} {{question.question }}</span>
+          
+        </div>
+        <ul>
+          <li *ngFor="let option of question.options" >
+            {{ option.answer }}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div> -->

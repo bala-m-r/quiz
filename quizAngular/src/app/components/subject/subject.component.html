@@ -1,0 +1,75 @@
+<div class="subject-container">
+  <h2>Subject List</h2>
+  
+  <ul>
+    <li *ngFor="let subject of subjects; let i = index">
+      <div>
+        {{ subject.subject }}
+      </div>
+      <div class="buttons">
+        <!-- Questions Button -->
+        <p-button 
+          label="" 
+          icon="pi pi-book" 
+          (click)="selectSubject(subject.id)" 
+          styleClass="p-button-success"
+          pTooltip="Questions" 
+          tooltipPosition="left">
+        </p-button>&emsp;
+  
+        <!-- Progress Button -->
+        <p-button 
+          label="" 
+          icon="pi pi-check" 
+          (click)="viewProgress(i)" 
+          pTooltip="Progress" 
+          tooltipPosition="top">
+        </p-button>&emsp;
+  
+        <!-- Delete Button -->
+        <p-button 
+          label="" 
+          icon="pi pi-trash" 
+          (click)="deleteSubject(i)" 
+          styleClass="p-button-danger" 
+          pTooltip="Delete" 
+          tooltipPosition="right">
+        </p-button>
+      </div>
+    </li>
+  </ul>
+
+  <h3>Add New Subject</h3>
+  <!-- PrimeNG inputText -->
+  <input pInputText [(ngModel)]="newSubject.subject" placeholder="Enter subject name" autocomplete="off" (keydown.enter)="addSubject()"/>
+
+  <!-- PrimeNG button to add subject -->
+  <p-button label="Add Subject" icon="pi pi-plus" (click)="addSubject()" styleClass="p-button-success"></p-button>
+
+</div>
+
+
+
+
+
+<!-- <div class="subject-container">
+    <h2>Subject List</h2>
+    <ul>
+      <li *ngFor="let subject of subjects; let i = index" >
+        <a (click)="selectSubject(subject.id)">
+          {{ subject.subject }}
+        </a>
+        <div>
+          <button (click)="deleteSubject(i)">Delete</button>
+        </div>
+      </li>
+    </ul>
+    
+    <h3>Add New Subject</h3>
+    <input [(ngModel)]="newSubject.subject" placeholder="Enter subject name" />
+    <button (click)="addSubject()">Add Subject</button>
+</div>
+
+
+
+ -->

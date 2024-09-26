@@ -1,0 +1,35 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .head h2 {
+    margin: 0;
+  }
+  
+  .head p-floatLabel {
+    width: 200px; /* Adjust the width of the search box as needed */
+  }
+  
+  .head input {
+    width: 100%;
+  }
+  

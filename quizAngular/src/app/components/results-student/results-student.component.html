@@ -1,0 +1,41 @@
+<div *ngIf="results.length > 0; else noResults">
+    <div class="head">
+        <div>
+            <h2>Results of {{ results[0].subject.subject }}</h2>
+        </div>
+        <div>
+            <p-floatLabel>
+              <input pInputText id="name" [(ngModel)]="serachValue" (input)="onSearch()" />
+              <label for="name">Search</label>
+            </p-floatLabel>
+        </div>
+    </div>
+    
+    
+    <p-table [value]="filteredResults" [paginator]="true" [rows]="5" [totalRecords]="totalRecords" sortMode="single">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Student</th>
+          <th pSortableColumn="mark">
+            Mark
+            <p-sortIcon field="mark"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      
+      <ng-template pTemplate="body" let-result>
+        <tr>
+          <td>{{ result.subject.subject }}</td>
+          <td>{{ result.mark }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  
+    <p-button label="Back" icon="pi pi-arrow-left" (click)="back()" styleClass="p-button"></p-button>
+  </div>
+  
+  <ng-template #noResults>
+    <p style="font-size: larger;">Kindly take a test first</p>
+    <p-button label="Back" icon="pi pi-arrow-left" (click)="back()" styleClass="p-button"></p-button>
+  </ng-template>
+  

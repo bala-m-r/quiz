@@ -1,0 +1,18 @@
+<div class="student-list-container">
+    <h2>Student List</h2>
+    <ul>
+        <li *ngFor="let student of students">
+            {{ student.name }}
+            
+            <div>
+                <p-button label="" icon="pi pi-book" (onClick)="selectStudent(student.id)" pTooltip="Take Test" tooltipPosition="left" styleClass="p-button-success"  ></p-button>
+                <p-button label="" icon="pi pi-check" (onClick)="viewProgress(student.id)" pTooltip="Progress" tooltipPosition="top"></p-button>
+                <p-button label="" icon="pi pi-trash" (onClick)="deleteStudent(student.id)" pTooltip="Delete" tooltipPosition="right" styleClass="p-button-danger" ></p-button>                
+            </div>
+        </li>
+    </ul>
+
+    <h3>Add New Student</h3>
+    <input pInputText [(ngModel)]="newStudentName" placeholder="Enter student name" (keydown.enter)="addStudent()"/>
+    <p-button label="Add Student" icon="pi pi-plus" styleClass="p-button-success" (onClick)="addStudent()"></p-button>
+</div>

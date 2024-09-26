@@ -1,0 +1,79 @@
+<div class="question-container" *ngIf="isList">
+  <h2>Questions</h2>
+  <div class="header-buttons">
+    <p-button label="Add Questions" icon="pi pi-plus" (click)="addQuestion()" styleClass="p-button-success left-button"></p-button>
+    <p-button label="Back to Subjects" icon="pi pi-arrow-left" (click)="gotoSubject()" styleClass="p-button-info right-button"></p-button>
+  </div>
+  <ul>
+    <li *ngFor="let question of questions, let i = index">
+      <div class="question-content">
+        <span>{{i+1}}.{{ question.question }}</span>
+        <div>
+          <p-button label="Edit" icon="pi p-button-info" (click)="editQuestion(question)" styleClass="p-button-info edit-button"></p-button>
+          <p-button label="" icon="pi pi-trash" (click)="deleteQuestion(question.id)" styleClass="p-button-danger delete-button"></p-button>
+        </div>
+      </div>
+      <ul>
+        <li *ngFor="let option of question.options" [ngClass]="{'correct': option.isright}">
+          {{ option.answer }}
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div class="question-container" *ngIf="isAdd">
+  <h2>Add New Question</h2>
+  <form (ngSubmit)="submitQuestion()" autocomplete="off">
+    <div class="form-group">
+      <label for="question">Question:</label>
+      <input pInputText type="text" id="question" [(ngModel)]="newQuestionText" name="question" required />
+    </div>
+
+    <h3>Answer Options</h3>
+    <div *ngFor="let option of newOptions; let i = index">
+      <div class="form-group">
+        <label for="answer{{i}}">Answer {{i + 1}}:</label>
+        <input pInputText type="text" id="answer{{i}}" [(ngModel)]="newOptions[i].answer" name="answer{{i}}" required />
+        <p-checkbox [(ngModel)]="newOptions[i].isright" binary="true" name="isRight{{i}}" label="Correct"></p-checkbox>
+        <p-button label="" icon="pi pi-minus" (click)="removeOption(i)" styleClass="p-button-danger" ></p-button>
+      </div>
+    </div><br>
+
+    <p-button label="Add another Option" icon="pi pi-plus" (click)="addOption()" styleClass="p-button-secondary"></p-button><br><br>
+
+    <div class="form-group">
+      <p-button type="submit" label="Submit Question" icon="pi pi-check" styleClass="p-button-success"></p-button>
+    </div>
+  </form>
+
+  <p-button label="Go To Question List" icon="pi pi-arrow-right" (click)="toQuestions()" styleClass="p-button-info"></p-button>
+</div>
+
+<div class="question-container" *ngIf="isEdit">
+  <h2>Edit Question</h2>
+  <form (ngSubmit)="submitEditQuestion()" autocomplete="off">
+    <div class="form-group">
+      <label for="question">Question:</label>
+      <input pInputText type="text" id="question" [(ngModel)]="newQuestion.question" name="question" required />
+    </div>
+
+    <h3>Answer Options</h3>
+    <div *ngFor="let option of newQuestion.options; let i = index">
+      <div class="form-group">
+        <label for="answer{{i}}">Answer {{i + 1}}:</label>
+        <input pInputText type="text" id="answer{{i}}" [(ngModel)]="newQuestion.options[i].answer" name="answer{{i}}" required />
+        <p-checkbox [(ngModel)]="newQuestion.options[i].isright" binary="true" name="isRight{{i}}" label="Correct"></p-checkbox>
+        <p-button label="" icon="pi pi-minus" (click)="removeOptionEdit(i)" styleClass="p-button-danger"></p-button>
+      </div>
+    </div>
+
+    <p-button label="Add another Option" icon="pi pi-plus" (click)="addOptionEdit()" styleClass="p-button-secondary"></p-button><br><br>
+
+    <div class="form-group">
+      <p-button type="submit" label="Submit Edit" icon="pi pi-check" styleClass="p-button-success"></p-button>
+    </div>
+  </form>
+
+  <p-button label="Go To Question List" icon="pi pi-arrow-right" (click)="toQuestions()" styleClass="p-button-info"></p-button>
+</div>
